@@ -36,6 +36,8 @@ module DeviseTokenAuth
     #   DeviseTokenAuth::TokenFactory.token
     #   => "6Bqs4K9x8ChLmZogvruF3A"
     def self.token
+      p @token
+      p "2"
       secure_string
     end
 

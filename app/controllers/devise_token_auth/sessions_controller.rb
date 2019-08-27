@@ -27,6 +27,8 @@ module DeviseTokenAuth
           return render_create_error_bad_credentials
         end
         @token = @resource.create_token
+          p @token
+  p "6"
         @resource.save
 
         sign_in(:user, @resource, store: false, bypass: false)

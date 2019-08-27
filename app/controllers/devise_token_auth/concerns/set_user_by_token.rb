@@ -18,6 +18,8 @@ module DeviseTokenAuth::Concerns::SetUserByToken
 
     # initialize instance variables
     @token = DeviseTokenAuth::TokenFactory.new
+    p @token
+    p "1"
     @resource ||= nil
     @is_batch_request ||= nil
   end
@@ -40,7 +42,8 @@ module DeviseTokenAuth::Concerns::SetUserByToken
     @token           = DeviseTokenAuth::TokenFactory.new unless @token
     @token.token     ||= request.headers[access_token_name] || params[access_token_name]
     @token.client ||= request.headers[client_name] || params[client_name]
-
+   p @token
+  p "3"
     # client isn't required, set to 'default' if absent
     @token.client ||= 'default'
 
