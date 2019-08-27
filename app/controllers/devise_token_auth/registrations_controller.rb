@@ -9,62 +9,81 @@ module DeviseTokenAuth
 
     def create
       build_resource
-
+        p @token
+        p"devisetokenauth1"
       unless @resource.present?
         raise DeviseTokenAuth::Errors::NoResourceDefinedError,
               "#{self.class.name} #build_resource does not define @resource,"\
               ' execution stopped.'
       end
-
+ p @token
+        p"devisetokenauth2"
       # give redirect value from params priority
       @redirect_url = params.fetch(
         :confirm_success_url,
         DeviseTokenAuth.default_confirm_success_url
       )
-
+ p @token
+        p"devisetokenauth3"
       # success redirect url is required
       if confirmable_enabled? && !@redirect_url
         return render_create_error_missing_confirm_success_url
       end
-
+ p @token
+        p"devisetokenauth4"
       # if whitelist is set, validate redirect_url against whitelist
       return render_create_error_redirect_url_not_allowed if blacklisted_redirect_url?
-
+ p @token
+        p"devisetokenauth5"
       # override email confirmation, must be sent manually from ctrl
       callback_name = defined?(ActiveRecord) && resource_class < ActiveRecord::Base ? :commit : :create
       resource_class.set_callback(callback_name, :after, :send_on_create_confirmation_instructions)
       resource_class.skip_callback(callback_name, :after, :send_on_create_confirmation_instructions)
-
+ p @token
+        p"devisetokenauth6"
       if @resource.respond_to? :skip_confirmation_notification!
         # Fix duplicate e-mails by disabling Devise confirmation e-mail
         @resource.skip_confirmation_notification!
+         p @token
+        p"devisetokenauth7"
       end
-
+ p @token
+        p"devisetokenauth8"
       if @resource.save
         yield @resource if block_given?
-
+ p @token
+        p"devisetokenauth9"
         unless @resource.confirmed?
           # user will require email authentication
           @resource.send_confirmation_instructions({
             client_config: params[:config_name],
             redirect_url: @redirect_url
           })
+           p @token
+        p"devisetokenauth10"
         end
-
+ p @token
+        p"devisetokenauth11"
         if active_for_authentication?
           # email auth has been bypassed, authenticate user
           @token = @resource.create_token
           @resource.save!
           update_auth_header
+           p @token
+        p"devisetokenauth12"
         end
-
+ p @token
+        p"devisetokenauth13"
         render_create_success
       else
         clean_up_passwords @resource
         render_create_error
+         p @token
+        p"devisetokenauth14"
       end
     end
-
+ p @token
+        p"devisetokenauth15"
     def update
       if @resource
         if @resource.send(resource_update_method, account_update_params)
