@@ -100,6 +100,7 @@ module DeviseTokenAuth
     #   => #<struct DeviseTokenAuth::TokenFactory::Token client=nil, token=nil, token_hash=nil, expiry=nil>
     def self.new
       Token.new
+      p Token
     end
 
     Token = Struct.new(:client, :token, :token_hash, :expiry) do
