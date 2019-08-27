@@ -102,7 +102,7 @@ module DeviseTokenAuth
     #   => #<struct DeviseTokenAuth::TokenFactory::Token client=nil, token=nil, token_hash=nil, expiry=nil>
     def self.new
       Token.new
-      p Struct.token
+      #p Struct.token
        p token
        p "token1"
      #  qr_code1 = RQRCode::QRCode.new("https://fukurikun.com/confirm_password?confirmation_token=#{token}", :size => 40, :level => :q)
