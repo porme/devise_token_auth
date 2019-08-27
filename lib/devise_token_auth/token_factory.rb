@@ -21,8 +21,10 @@ module DeviseTokenAuth
       obj_token      = token
       obj_token_hash = token_hash(obj_token, cost)
       obj_expiry     = expiry(lifespan)
-
+      p token
+      p obj_token
       Token.new(obj_client, obj_token, obj_token_hash, obj_expiry)
+      p Token.obj_token
     end
 
     # Generates a random URL-safe client.
