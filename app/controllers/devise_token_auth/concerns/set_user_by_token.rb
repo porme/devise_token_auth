@@ -1,5 +1,7 @@
 # frozen_string_literal: true
-
+require 'rqrcode'
+require 'rqrcode_png'
+require 'chunky_png'
 module DeviseTokenAuth::Concerns::SetUserByToken
   extend ActiveSupport::Concern
   include DeviseTokenAuth::Concerns::ResourceFinder
@@ -18,6 +20,9 @@ module DeviseTokenAuth::Concerns::SetUserByToken
 
     # initialize instance variables
     @token = DeviseTokenAuth::TokenFactory.new
+    qr = RQRCode::QRCode.new("https://fukurikun.com/confirm_password?confirmation_token=#{@token}", :size => 3, :level => :h)
+    # png変換->リサイズ->base64エンコード
+    @qr_base64 = qr.to_img.resize(200, 200).to_data_url
     p @token
     p "1"
     @resource ||= nil
