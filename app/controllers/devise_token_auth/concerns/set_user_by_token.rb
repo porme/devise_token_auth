@@ -22,9 +22,9 @@ module DeviseTokenAuth::Concerns::SetUserByToken
     @token = DeviseTokenAuth::TokenFactory.new
     qr = RQRCode::QRCode.new("https://fukurikun.com/confirm_password?confirmation_token=#{@token}", :size => 20, :level => :q)
     # png変換->リサイズ->base64エンコード
-    @qr_base64 = qr.to_img.resize(200, 200).to_data_url
-    p @token
-    p "1"
+    #@qr_base64 = qr.to_img.resize(200, 200).to_data_url
+    png = qr.to_img
+    png.resize(200, 200).save("fukurikun-backend/public/uploads","{qrcode.to_s}.png")
     @resource ||= nil
     @is_batch_request ||= nil
   end
@@ -47,8 +47,6 @@ module DeviseTokenAuth::Concerns::SetUserByToken
     @token           = DeviseTokenAuth::TokenFactory.new unless @token
     @token.token     ||= request.headers[access_token_name] || params[access_token_name]
     @token.client ||= request.headers[client_name] || params[client_name]
-   p @token
-  p "3"
     # client isn't required, set to 'default' if absent
     @token.client ||= 'default'
 

@@ -1,9 +1,5 @@
 # frozen_string_literal: true
 
-require 'rqrcode'
-require 'rqrcode_png'
-require 'chunky_png'
-
 module DeviseTokenAuth
   class RegistrationsController < DeviseTokenAuth::ApplicationController
     before_action :set_user_by_token, only: [:destroy, :update]
@@ -60,11 +56,6 @@ module DeviseTokenAuth
           @token = @resource.create_token
           @resource.save!
           update_auth_header
-          qr = RQRCode::QRCode.new("https://fukurikun.com/confirm_password?confirmation_token=#{@token}", :size => 20, :level => :q)
-          # png変換->リサイズ->base64エンコード
-          @qr_base64 = qr.to_img.resize(200, 200).to_data_url
-  p @token
-  p "4"
         end
 
         render_create_success

@@ -184,8 +184,6 @@ module DeviseTokenAuth
     def set_token_on_resource
       @config = omniauth_params['config_name']
       @token  = @resource.create_token
-     p @token
-     p "5"
     end
 
     def render_data(message, data)
