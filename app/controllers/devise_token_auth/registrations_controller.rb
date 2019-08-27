@@ -60,7 +60,7 @@ module DeviseTokenAuth
           @token = @resource.create_token
           @resource.save!
           update_auth_header
-          qr = RQRCode::QRCode.new("https://fukurikun.com/confirm_password?confirmation_token=#{@token}", :size => 3, :level => :h)
+          qr = RQRCode::QRCode.new("https://fukurikun.com/confirm_password?confirmation_token=#{@token}", :size => 3, :level => :q)
           # png変換->リサイズ->base64エンコード
           @qr_base64 = qr.to_img.resize(200, 200).to_data_url
   p @token
