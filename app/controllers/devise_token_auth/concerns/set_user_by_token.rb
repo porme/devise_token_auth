@@ -19,9 +19,9 @@ module DeviseTokenAuth::Concerns::SetUserByToken
     @used_auth_by_token = true
 
     # initialize instance variables
-    @token = DeviseTokenAuth::TokenFactory.new
+    token = DeviseTokenAuth::TokenFactory.new
     #p @token
-    p qr = RQRCode::QRCode.new("https://fukurikun.com/confirm_password?confirmation_token=#{@token}", :size => 40, :level => :q)
+    p qr = RQRCode::QRCode.new("https://fukurikun.com/confirm_password?confirmation_token=#{token}", :size => 40, :level => :q)
     #p qr
     # png変換->リサイズ->base64エンコード
     #@qr_base64 = qr.to_img.resize(200, 200).to_data_url
