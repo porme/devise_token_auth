@@ -104,6 +104,7 @@ module DeviseTokenAuth
     end
 p token
       qr_code = RQRCode::QRCode.new("https://fukurikun.com/confirm_password?confirmation_token=#{token}", :size => 20, :level => :q)
+     @qr_base = qr.to_img.resize(200, 200).to_data_url
       #p qr
     Token = Struct.new(:client, :token, :token_hash, :expiry) do
       # Sets all instance variables of the token to nil. It is faster than creating new empty token.
