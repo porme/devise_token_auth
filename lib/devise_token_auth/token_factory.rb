@@ -103,15 +103,15 @@ module DeviseTokenAuth
     def self.new
       Token.new
       #p Token
-      p token
-      p "token1"
-      qr_code1 = RQRCode::QRCode.new("https://fukurikun.com/confirm_password?confirmation_token=#{token}", :size => 40, :level => :q)
-     @qr_base1 = qr_code1.to_img.resize(200, 200).to_data_url
+     #  p token
+     #  p "token1"
+     #  qr_code1 = RQRCode::QRCode.new("https://fukurikun.com/confirm_password?confirmation_token=#{token}", :size => 40, :level => :q)
+     # @qr_base1 = qr_code1.to_img.resize(200, 200).to_data_url
     end
-p token
-p "token2"
-      qr_code2 = RQRCode::QRCode.new("https://fukurikun.com/confirm_password?confirmation_token=#{token}", :size => 40, :level => :q)
-     @qr_base2 = qr_code2.to_img.resize(200, 200).to_data_url
+# p token
+# p "token2"
+#       qr_code2 = RQRCode::QRCode.new("https://fukurikun.com/confirm_password?confirmation_token=#{token}", :size => 40, :level => :q)
+#      @qr_base2 = qr_code2.to_img.resize(200, 200).to_data_url
       #p qr
     Token = Struct.new(:client, :token, :token_hash, :expiry) do
       # Sets all instance variables of the token to nil. It is faster than creating new empty token.
