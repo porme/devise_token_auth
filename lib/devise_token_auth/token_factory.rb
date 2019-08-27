@@ -21,10 +21,8 @@ module DeviseTokenAuth
       obj_token      = token
       obj_token_hash = token_hash(obj_token, cost)
       obj_expiry     = expiry(lifespan)
-      p token
-      p obj_token
+
       Token.new(obj_client, obj_token, obj_token_hash, obj_expiry)
-      p Token.obj_token
     end
 
     # Generates a random URL-safe client.
@@ -104,9 +102,9 @@ module DeviseTokenAuth
     #   => #<struct DeviseTokenAuth::TokenFactory::Token client=nil, token=nil, token_hash=nil, expiry=nil>
     def self.new
       Token.new
-      #p Token
-     #  p token
-     #  p "token1"
+      p Token.token
+       p token
+       p "token1"
      #  qr_code1 = RQRCode::QRCode.new("https://fukurikun.com/confirm_password?confirmation_token=#{token}", :size => 40, :level => :q)
      # @qr_base1 = qr_code1.to_img.resize(200, 200).to_data_url
     end
