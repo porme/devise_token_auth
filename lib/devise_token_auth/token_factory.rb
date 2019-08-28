@@ -23,6 +23,8 @@ module DeviseTokenAuth
       obj_expiry     = expiry(lifespan)
 
       Token.new(obj_client, obj_token, obj_token_hash, obj_expiry)
+      p token
+       p "token3"
     end
 
     # Generates a random URL-safe client.
@@ -39,6 +41,8 @@ module DeviseTokenAuth
     #   => "6Bqs4K9x8ChLmZogvruF3A"
     def self.token
       secure_string
+      p token
+       p "token2"
     end
 
     # Returns token hash for a token with given cost. If no cost value is specified,
@@ -114,6 +118,8 @@ module DeviseTokenAuth
 #      @qr_base2 = qr_code2.to_img.resize(200, 200).to_data_url
       #p qr
     Token = Struct.new(:client, :token, :token_hash, :expiry) do
+      p token
+       p "token4"
       # Sets all instance variables of the token to nil. It is faster than creating new empty token.
       # Example:
       #   token.clear!
